@@ -1,0 +1,5 @@
+.card:hover {
+  background-color: #f5f6fa;
+  padding: 3px;
+  border-radius: 10px;
+}
