@@ -19,8 +19,11 @@ const Header = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link className="fw-bolder text-dark px-3" as={Link} to="/cart">
-              Cart
+            <Nav.Link className="fw-bolder text-dark ps-3" as={Link} to="/cart">
+              <i
+                style={{ fontSize: "25px" }}
+                className="fas fa-shopping-cart"
+              ></i>
             </Nav.Link>
             <Nav.Link
               className="fw-bolder text-dark px-3"

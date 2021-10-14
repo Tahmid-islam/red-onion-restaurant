@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router";
+import FoodCart from "../FoodCart/FoodCart";
 
 const FoodDetails = () => {
   const { foodId } = useParams();
@@ -20,9 +21,8 @@ const FoodDetails = () => {
 
   return (
     <div>
-      <h2>Hello{foodId}</h2>
       {foodDetails.map((food) => (
-        <h2>{food.title}</h2>
+        <FoodCart key={food.id} food={food}></FoodCart>
       ))}
     </div>
   );
