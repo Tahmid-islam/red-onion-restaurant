@@ -10,7 +10,9 @@ const Shop = () => {
   const [category, setCategory] = useCategory();
   const [foodItems, setFoodItems] = useState([]);
   useEffect(() => {
-    fetch("./data.json")
+    const url =
+      "https://raw.githubusercontent.com/Tahmid-islam/red-onion-restaurant/main/public/data.json";
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         const matchedCategory = data.filter(

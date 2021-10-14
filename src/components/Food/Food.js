@@ -1,9 +1,16 @@
 import React from "react";
 import { Card, Col } from "react-bootstrap";
+import { useHistory } from "react-router";
 import "./Food.css";
 
 const Food = ({ foodItem }) => {
   const { id, title, description, price, img } = foodItem;
+  const history = useHistory();
+
+  const handleOrder = (id) => {
+    history.push(`/details/${id}`);
+  };
+
   return (
     <div>
       <Col>
@@ -12,8 +19,14 @@ const Food = ({ foodItem }) => {
           <Card.Body>
             <Card.Title>{title}</Card.Title>
             <Card.Text>{description}</Card.Text>
+            <Card.Text className="fs-3 fw-bold">{price}</Card.Text>
             <Card.Text>
-              <h2>{price}</h2>
+              <button
+                onClick={() => handleOrder(id)}
+                className="btn btn-danger rounded-pill"
+              >
+                Order Now
+              </button>
             </Card.Text>
           </Card.Body>
         </Card>
