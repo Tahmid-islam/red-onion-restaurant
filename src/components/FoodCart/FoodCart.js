@@ -1,5 +1,13 @@
 import React from "react";
 import { useState } from "react";
+import { Carousel } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+import img1 from "../../images/lunch/lunch1.png";
+import img2 from "../../images/lunch/lunch2.png";
+import img3 from "../../images/lunch/lunch3.png";
+import img4 from "../../images/lunch/lunch4.png";
+import img5 from "../../images/lunch/lunch5.png";
+import "./FoodCart.css";
 
 const FoodCart = ({ food }) => {
   const { title, img, price } = food;
@@ -8,6 +16,13 @@ const FoodCart = ({ food }) => {
     setCount(1);
   }
   let newPrice = (price * count).toFixed(2);
+
+  const history = useHistory();
+
+  const handleClick = () => {
+    history.push("/cart");
+  };
+
   return (
     <div>
       <div
@@ -42,11 +57,52 @@ const FoodCart = ({ food }) => {
                 </button>
               </span>
             </h2>
-            <button className="btn btn-danger rounded-pill px-3">
+            <button
+              onClick={handleClick}
+              className="btn btn-danger rounded-pill px-3"
+            >
               <i className="fas fa-shopping-cart text-white pe-2"></i>Add
             </button>
           </div>
-          <div></div>
+          <div className="mt-5 mx-auto">
+            <Carousel className="carousel mb-4" role="listview">
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 img-fluid"
+                  src={img1}
+                  alt="First slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 img-fluid"
+                  src={img2}
+                  alt="Second slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 img-fluid"
+                  src={img3}
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 img-fluid"
+                  src={img4}
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100 img-fluid"
+                  src={img5}
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+            </Carousel>
+          </div>
         </div>
         <div className="col-12 col-lg-6">
           <img className="img-fluid" src={img} alt="" />

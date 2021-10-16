@@ -1,16 +1,18 @@
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useAuth from "../../hooks/useAuth";
 import logo from "../../images/logo2.png";
 import "./Header.css";
 
 const Header = () => {
+  const { user, logOut } = useAuth();
   return (
     <>
       <Navbar
         collapseOnSelect
         expand="lg"
-        className="text-dark navbar sticky-top"
+        className="text-dark navbar sticky-top px-2"
         sticky="top"
       >
         <Navbar.Brand as={Link} to="/">
@@ -25,24 +27,34 @@ const Header = () => {
                 className="fas fa-shopping-cart"
               ></i>
             </Nav.Link>
-            <Nav.Link
-              className="fw-bolder text-dark px-3"
-              as={Link}
-              to="/login"
-            >
-              Login
-            </Nav.Link>
-            <Nav.Link
-              className="text-white bg-danger rounded-pill px-3"
-              as={Link}
-              to="/signup"
-            >
-              Signup
-            </Nav.Link>
+            {user.email ? (
+              <Nav.Link onClick={logOut} className="fw-bolder text-dark px-3">
+                Logout
+              </Nav.Link>
+            ) : (
+              <Nav.Link
+                className="fw-bolder text-dark px-3"
+                as={Link}
+                to="/login"
+              >
+                Login
+              </Nav.Link>
+            )}
+            {!user.email && (
+              <Nav.Link
+                className="text-white bg-danger rounded-pill px-3"
+                as={Link}
+                to="/signup"
+              >
+                Sign up
+              </Nav.Link>
+            )}
           </Nav>
-          <Navbar.Text className="fw-bolder text-dark px-3">
-            Signed in as:
-          </Navbar.Text>
+          {user.email && (
+            <Navbar.Text className="fw-bolder text-dark px-3">
+              Signed in as: {user.displayName}
+            </Navbar.Text>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </>
